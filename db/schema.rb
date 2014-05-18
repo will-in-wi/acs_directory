@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518201512) do
+ActiveRecord::Schema.define(version: 20140518201659) do
 
   create_table "addresses", id: false, force: true do |t|
     t.integer  "id"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20140518201512) do
 
   add_index "addresses_individuals", ["address_id"], name: "index_addresses_individuals_on_address_id"
   add_index "addresses_individuals", ["individual_id"], name: "index_addresses_individuals_on_individual_id"
+
+  create_table "email_addresses", id: false, force: true do |t|
+    t.integer  "id"
+    t.boolean  "listed"
+    t.boolean  "preferred"
+    t.string   "email_type"
+    t.string   "email_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "email_addresses", ["id"], name: "email_addresses_id_index", unique: true
 
   create_table "individuals", id: false, force: true do |t|
     t.integer  "id"
