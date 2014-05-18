@@ -1,0 +1,13 @@
+development: &default
+  username: username
+  password: passwd
+  site_number: 1234567
+
+test:
+  <<: *default
+
+stage:
+  <<: *default
+
+production:
+  <<: *default
