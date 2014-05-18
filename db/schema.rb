@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518201012) do
+ActiveRecord::Schema.define(version: 20140518201342) do
 
   create_table "addresses", id: false, force: true do |t|
     t.integer  "id"
@@ -67,5 +67,22 @@ ActiveRecord::Schema.define(version: 20140518201012) do
   end
 
   add_index "individuals", ["id"], name: "id_index", unique: true
+
+  create_table "phone_numbers", id: false, force: true do |t|
+    t.integer  "id"
+    t.string   "phone_type"
+    t.integer  "phone_type_id"
+    t.integer  "phone_ref"
+    t.boolean  "listed"
+    t.string   "phone_number"
+    t.boolean  "preferred"
+    t.boolean  "family_phone"
+    t.boolean  "address_phone"
+    t.string   "extension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "phone_numbers", ["id"], name: "phone_numbers_id_index", unique: true
 
 end
