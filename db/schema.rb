@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518201342) do
+ActiveRecord::Schema.define(version: 20140518201512) do
 
   create_table "addresses", id: false, force: true do |t|
     t.integer  "id"
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 20140518201342) do
   end
 
   add_index "individuals", ["id"], name: "id_index", unique: true
+
+  create_table "individuals_phone_numbers", force: true do |t|
+    t.integer  "individual_id"
+    t.integer  "phone_number_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "individuals_phone_numbers", ["individual_id"], name: "index_individuals_phone_numbers_on_individual_id"
+  add_index "individuals_phone_numbers", ["phone_number_id"], name: "index_individuals_phone_numbers_on_phone_number_id"
 
   create_table "phone_numbers", id: false, force: true do |t|
     t.integer  "id"
