@@ -69,6 +69,9 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
+    hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.9)
     interception (0.5)
@@ -119,6 +122,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
+    rash (0.4.0)
+      hashie (~> 2.0.0)
     rdoc (4.1.1)
       json (~> 1.4)
     rspec-core (2.14.8)
@@ -196,12 +201,14 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   factory_girl_rails
   faraday
+  faraday_middleware
   jbuilder (~> 2.0)
   jquery-rails
   pry
   pry-rails
   pry-rescue
   rails (= 4.1.0)
+  rash
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
