@@ -4,7 +4,9 @@ development: &default
   site_number: 1234567
 
 test:
-  <<: *default
+  username: testuser
+  password: testpassword
+  site_number: 123456
 
 stage:
   <<: *default
