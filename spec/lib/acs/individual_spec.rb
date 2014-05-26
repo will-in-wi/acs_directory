@@ -15,18 +15,18 @@ describe ACS::Individual do
     end
   end
 
-  describe '.list' do
+  describe '.where' do
     it 'retrieves every record' do
       pending
       WebMock.allow_net_connect!
-      i = ACS::Individual.list
+      i = ACS::Individual.all
       expect(i).to have(2400).items
     end
 
     it 'works with query' do
       pending
       WebMock.allow_net_connect!
-      i = ACS::Individual.list 'William'
+      i = ACS::Individual.where 'William'
       expect(i).to have(15).items
     end
   end

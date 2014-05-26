@@ -7,7 +7,7 @@ module ACS
       result.body
     end
 
-    def self.list(query = '%')
+    def self.where(query)
       # ACS enforces a maximum of 500, so we need multiple requests.
       result = connection.get 'individuals', q: query, pageSize: 500
       raise 'Bad response' unless result.status == 200
@@ -22,6 +22,10 @@ module ACS
       end
 
       concat
+    end
+
+    def self.all
+       self.where '%'
     end
 
   end
