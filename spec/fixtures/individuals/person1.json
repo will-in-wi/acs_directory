@@ -1,8 +1,8 @@
 {
     "IndvId": 2,
     "PrimFamily": 1001,
-    "LastName": "John",
-    "FirstName": "Doe",
+    "LastName": "Doe",
+    "FirstName": "John",
     "MiddleName": null,
     "GoesbyName": null,
     "Suffix": null,
@@ -35,7 +35,7 @@
         "Longitude": ""
     }],
     "Emails": [{
-        "EmailId": 1,
+        "EmailId": 2,
         "EmailType": "Personal",
         "Preferred": true,
         "Email": "jdoe@example.com",
