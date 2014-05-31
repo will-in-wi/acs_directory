@@ -1,6 +1,21 @@
 module Indexer
   class Individual
 
+    def self.import_all!(individuals)
+      individuals.each do |i|
+        indv = self.new(i)
+        # TODO: Log instead of puts.
+        begin
+          indv.import!
+          puts "Successfully imported ##{i.indv_id}"
+        rescue => e
+          puts "Failed to import ##{i.indv_id}. Error: #{e.message}"
+        end
+      end
+
+      # TODO: Clear out all phone numbers, addresses, and email addresses that are not associated with an individual.
+    end
+
     def initialize(individual)
       @individual = individual
     end

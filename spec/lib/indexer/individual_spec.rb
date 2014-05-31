@@ -4,8 +4,11 @@ describe Indexer::Individual do
 
   before { stub_request(:get, "https://testuser:testpassword@secure.accessacs.com/api_accessacs_mobile/v2/123456/individuals/2").
          to_return(:status => 200, :body => IO.read(Rails.root.join('spec', 'fixtures', 'individuals', 'person1.json')), :headers => { 'Content-Type' => 'application/json; charset=utf-8' }) }
+  before { stub_request(:get, "https://testuser:testpassword@secure.accessacs.com/api_accessacs_mobile/v2/123456/individuals/3").
+         to_return(:status => 200, :body => IO.read(Rails.root.join('spec', 'fixtures', 'individuals', 'person2.json')), :headers => { 'Content-Type' => 'application/json; charset=utf-8' }) }
 
   let(:person1) { ACS::Individual.find(2) }
+  let(:person2) { ACS::Individual.find(3) }
 
   describe '#import!' do
     it 'works when entirely new' do
@@ -168,6 +171,21 @@ describe Indexer::Individual do
       # Create a test later to make sure that all of the unused email addresses are gone.
       # secondary_email = EmailAddress.find_by_id(4)
       # expect(secondary_email).to be_nil
+    end
+  end
+
+  describe '.import_all!' do
+    it 'works for two new people' do
+      individuals = [
+        person1,
+        person2
+      ]
+
+      Indexer::Individual.import_all!(individuals)
+
+      expect(Individual.count).to eql(2)
+      expect(EmailAddress.count).to eql(2)
+      expect(Address.count).to eql(1)
     end
   end
 end
