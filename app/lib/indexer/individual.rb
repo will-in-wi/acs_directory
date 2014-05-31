@@ -49,11 +49,44 @@ module Indexer
       end
 
       # Remove email addresses that are no longer used.
-      # Reload individual from database since there is an out of date cache.
+      # Reload email addresses from database since there is an out of date cache.
       removed_email_ids = individual.email_addresses(true).map(&:id) - @individual.emails.map {|e| e['email_id']}
       individual.email_addresses_individuals.where(email_address_id: removed_email_ids).destroy_all
 
-      # TODO: Check addresses
+      # Check addresses
+      @individual.addresses.each do |a|
+        address = Address.find_by_id(a.addr_id)
+        if address.nil?
+          # Insert new address into DB.
+          address = Address.new do |addr|
+            addr.id = a.addr_id
+          end
+        end
+
+        address.address_type = a.addr_type
+        address.mailing_address = a.mail_address
+        address.address = a.address
+        address.address2 = a.address2
+        address.city = a.city
+        address.state = a.state
+        address.zip_code = a.zipcode
+        address.country = a.country
+        address.latitude = a.latitude
+        address.longitude = a.longitude
+        address.active = a.active_address
+        address.family_address = a.family_address
+        address.company = a.company
+        address.statement_address = a.statement_address
+        address.address_type_id = a.addr_type_id
+        address.save
+
+        AddressesIndividual.find_or_create_by(address: address, individual: individual)
+      end
+
+      # Remove addresses that are no longer used.
+      # Reload addresses from database since there is an out of date cache.
+      removed_addr_ids = individual.addresses(true).map(&:id) - @individual.addresses.map {|e| e['addr_id']}
+      individual.addresses_individuals.where(address_id: removed_addr_ids).destroy_all
 
       # TODO: Check phone numbers
     end
