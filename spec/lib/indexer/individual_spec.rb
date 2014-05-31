@@ -42,6 +42,19 @@ describe Indexer::Individual do
       expect(address.city).to eql('Metroville')
       expect(address.state).to eql('MN')
       expect(address.zip_code).to eql('12345-1234')
+
+      expect(individual.phone_numbers).to have(2).items
+
+      phone = individual.phone_numbers.find(545)
+      expect(phone.preferred).to be_false
+      expect(phone.phone_type_id).to eql(6)
+      expect(phone.phone_type).to eql("Business")
+      expect(phone.family_phone).to be_false
+      expect(phone.phone_number).to eql("123-456-7890")
+      expect(phone.extension).to be_nil
+      expect(phone.listed).to be_true
+      expect(phone.address_phone).to be_false
+      expect(phone.phone_ref).to eql(1234567890)
     end
 
     it 'works when already existing' do
@@ -53,10 +66,15 @@ describe Indexer::Individual do
       a.address = '321 blah St.'
       a.save!
 
+      p = build :person1_phone_number
+      p.phone_number = "321-456-7890"
+      p.save!
+
       i = build :person1_individual
       i.suffix = 'Blah'
       i.email_addresses << e
       i.addresses << a
+      i.phone_numbers << p
 
       i.email_addresses.new do |ea|
         # Extra email that should be deleted
@@ -83,6 +101,19 @@ describe Indexer::Individual do
         addr.city = 'Metroville'
         addr.state = 'MN'
         addr.zip_code = '12345-1234'
+      end
+
+      i.phone_numbers.new do |phone|
+        phone.id = 599
+        phone.preferred = false
+        phone.phone_type_id = 6
+        phone.phone_type = "Business"
+        phone.family_phone = false
+        phone.phone_number = "133-133-1333"
+        phone.extension = nil
+        phone.listed = true
+        phone.address_phone = false
+        phone.phone_ref = 1331331333
       end
 
       i.save!
@@ -120,6 +151,19 @@ describe Indexer::Individual do
       expect(address.city).to eql('Metroville')
       expect(address.state).to eql('MN')
       expect(address.zip_code).to eql('12345-1234')
+
+      expect(individual.phone_numbers).to have(2).items
+
+      phone = individual.phone_numbers.find(545)
+      expect(phone.preferred).to be_false
+      expect(phone.phone_type_id).to eql(6)
+      expect(phone.phone_type).to eql("Business")
+      expect(phone.family_phone).to be_false
+      expect(phone.phone_number).to eql("123-456-7890")
+      expect(phone.extension).to be_nil
+      expect(phone.listed).to be_true
+      expect(phone.address_phone).to be_false
+      expect(phone.phone_ref).to eql(1234567890)
 
       # Create a test later to make sure that all of the unused email addresses are gone.
       # secondary_email = EmailAddress.find_by_id(4)

@@ -88,7 +88,34 @@ module Indexer
       removed_addr_ids = individual.addresses(true).map(&:id) - @individual.addresses.map {|e| e['addr_id']}
       individual.addresses_individuals.where(address_id: removed_addr_ids).destroy_all
 
-      # TODO: Check phone numbers
+      # Check phone numbers
+      @individual.phones.each do |p|
+        phone = PhoneNumber.find_by_id(p.phone_id)
+        if phone.nil?
+          # Insert new phone into DB.
+          phone = PhoneNumber.new do |phn|
+            phn.id = p.phone_id
+          end
+        end
+
+        phone.preferred = p.preferred
+        phone.phone_type_id = p.phone_type_id
+        phone.phone_type = p.phone_type
+        phone.family_phone = p.family_phone
+        phone.phone_number = p.phone_number
+        phone.extension = p.extension
+        phone.listed = p.listed
+        phone.address_phone = p.addr_phone
+        phone.phone_ref = p.phone_ref
+        phone.save
+
+        IndividualsPhoneNumber.find_or_create_by(phone_number: phone, individual: individual)
+      end
+
+      # Remove phones that are no longer used.
+      # Reload phones from database since there is an out of date cache.
+      removed_phone_ids = individual.phone_numbers(true).map(&:id) - @individual.phones.map {|e| e['phone_id']}
+      individual.individuals_phone_numbers.where(phone_number_id: removed_phone_ids).destroy_all
     end
 
   end
