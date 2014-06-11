@@ -6,9 +6,12 @@ describe Indexer::Individual do
          to_return(:status => 200, :body => IO.read(Rails.root.join('spec', 'fixtures', 'individuals', 'person1.json')), :headers => { 'Content-Type' => 'application/json; charset=utf-8' }) }
   before { stub_request(:get, "https://testuser:testpassword@secure.accessacs.com/api_accessacs_mobile/v2/123456/individuals/3").
          to_return(:status => 200, :body => IO.read(Rails.root.join('spec', 'fixtures', 'individuals', 'person2.json')), :headers => { 'Content-Type' => 'application/json; charset=utf-8' }) }
+  before { stub_request(:get, "https://testuser:testpassword@secure.accessacs.com/api_accessacs_mobile/v2/123456/individuals/5").
+         to_return(:status => 200, :body => IO.read(Rails.root.join('spec', 'fixtures', 'individuals', 'person_minimum.json')), :headers => { 'Content-Type' => 'application/json; charset=utf-8' }) }
 
   let(:person1) { ACS::Individual.find(2) }
   let(:person2) { ACS::Individual.find(3) }
+  let(:person_minimum) { ACS::Individual.find(5) }
 
   describe '#import!' do
     it 'works when entirely new' do
@@ -171,6 +174,20 @@ describe Indexer::Individual do
       # Create a test later to make sure that all of the unused email addresses are gone.
       # secondary_email = EmailAddress.find_by_id(4)
       # expect(secondary_email).to be_nil
+    end
+
+    it 'works when minimum fields are available' do
+      expect(person_minimum).to_not be_nil
+      ind = Indexer::Individual.new(person_minimum)
+      ind.import!
+
+      individual = Individual.find(5)
+      expect(individual).to_not be_nil
+      expect(individual.suffix).to be_nil
+
+      expect(individual.email_addresses).to_not be_any
+      expect(individual.addresses).to_not be_any
+      expect(individual.phone_numbers).to_not be_any
     end
   end
 

@@ -78,7 +78,7 @@ module Indexer
         individual.full_name = @individual.full_name
         individual.friendly_name = @individual.friendly_name
         individual.family_picture_url = @individual.family_picture_url
-        individual.date_of_birth = Date.strptime(@individual.date_of_birth, "%m/%d/%Y")
+        individual.date_of_birth = Date.strptime(@individual.date_of_birth, "%m/%d/%Y") if @individual.date_of_birth
         individual.member_status = @individual.member_status
         individual.save
 

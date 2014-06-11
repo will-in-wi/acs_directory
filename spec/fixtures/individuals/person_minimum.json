@@ -1,0 +1,22 @@
+{
+    "IndvId": 5,
+    "PrimFamily": 1001,
+    "LastName": "Doe",
+    "FirstName": "John",
+    "MiddleName": null,
+    "GoesbyName": null,
+    "Suffix": null,
+    "Title": null,
+    "FullName": "Doe, Jane ",
+    "FriendlyName": "Jane Doe",
+    "PictureUrl": "",
+    "FamilyPictureUrl": "",
+    "DateOfBirth": null,
+    "MemberStatus": "Transfer fr Lutheran",
+    "FamilyPosition": null,
+    "UserIsLeaderOf": false,
+    "Addresses": [],
+    "Emails": [],
+    "Phones": [],
+    "FamilyMembers": []
+}
