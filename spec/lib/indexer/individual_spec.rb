@@ -22,6 +22,20 @@ describe Indexer::Individual do
       individual = Individual.find(2)
       expect(individual).to_not be_nil
       expect(individual.suffix).to be_nil
+      expect(individual.family_id).to eql(1001)
+      expect(individual.first_name).to eql('John')
+      expect(individual.middle_name).to be_nil
+      expect(individual.last_name).to eql('Doe')
+      expect(individual.goes_by_name).to be_nil
+      expect(individual.title).to be_nil
+      expect(individual.picture_url).to eql('')
+      expect(individual.family_position).to eql('Head')
+      expect(individual.suffix).to be_nil
+      expect(individual.full_name).to eql('Doe, John ')
+      expect(individual.friendly_name).to eql('John Doe')
+      expect(individual.family_picture_url).to eql('')
+      expect(individual.date_of_birth.to_s).to eql('1956-02-15 00:00:00 UTC')
+      expect(individual.member_status).to eql('Transfer fr Lutheran')
 
       expect(individual.email_addresses).to have(1).item
 
