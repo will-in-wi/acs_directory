@@ -188,4 +188,40 @@ describe Indexer::Individual do
       expect(Address.count).to eql(1)
     end
   end
+
+  describe '.clean!' do
+    it 'deletes everything when no individuals' do
+      create :person1_email
+      create :person1_address
+      create :person1_phone_number
+
+      Indexer::Individual.clean!
+
+      expect(EmailAddress).to_not be_any
+      expect(Address).to_not be_any
+      expect(PhoneNumber).to_not be_any
+    end
+
+    it 'deletes everything not connected to an individual' do
+      e = build :person1_email
+      e.id = 1234
+      e.save!
+
+      a = build :person1_address
+      a.id = 1234
+      a.save!
+
+      p = build :person1_phone_number
+      p.id = 1234
+      p.save!
+
+      create :person1_individual_with_children
+
+      Indexer::Individual.clean!
+
+      expect(EmailAddress).to have(1).item
+      expect(Address).to have(1).item
+      expect(PhoneNumber).to have(1).item
+    end
+  end
 end

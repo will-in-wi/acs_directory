@@ -34,6 +34,29 @@ module Indexer
       import_phone_numbers(individual)
     end
 
+    def self.clean!
+      # Remove addresses, phone numbers, and email addresses that are not associated with any individual.
+
+      # Assume that join tables are clear.
+
+      # TODO: Stinky. There should be a simple query that does this.
+      emails = EmailAddress.all
+      emails.each do |e|
+        e.destroy unless e.individuals.any?
+      end
+
+      phone_numbers = PhoneNumber.all
+      phone_numbers.each do |p|
+        p.destroy unless p.individuals.any?
+      end
+
+      addresses = Address.all
+      addresses.each do |a|
+        a.destroy unless a.individuals.any?
+      end
+
+    end
+
     protected
 
       def import_individual
