@@ -25,13 +25,13 @@ module Indexer
       individual = import_individual
 
       # Check email
-      import_email_addresses(individual)
+      import_email_addresses(individual) if @individual.emails
 
       # Check addresses
-      import_addresses(individual)
+      import_addresses(individual) if @individual.addresses
 
       # Check phone numbers
-      import_phone_numbers(individual)
+      import_phone_numbers(individual) if @individual.phones
     end
 
     def self.clean!

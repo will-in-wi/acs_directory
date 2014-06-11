@@ -14,9 +14,5 @@
     "DateOfBirth": null,
     "MemberStatus": "Transfer fr Lutheran",
     "FamilyPosition": null,
-    "UserIsLeaderOf": false,
-    "Addresses": [],
-    "Emails": [],
-    "Phones": [],
-    "FamilyMembers": []
+    "UserIsLeaderOf": false
 }
