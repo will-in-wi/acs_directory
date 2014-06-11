@@ -9,7 +9,8 @@ module ACS
         builder.request :basic_auth, config['username'], config['password']
         builder.response :rashify
         builder.response :json, :content_type => /\bjson$/
-        builder.adapter Faraday.default_adapter
+        # builder.adapter Faraday.default_adapter
+        builder.adapter  :net_http_persistent
       end
     end
   end

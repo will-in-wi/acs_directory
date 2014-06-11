@@ -29,6 +29,8 @@ gem 'spring',        group: :development
 
 gem 'faraday'
 gem 'faraday_middleware'
+# Speed up faraday by keeping the connection open.
+gem 'net-http-persistent'
 gem 'rash'
 
 # Use ActiveModel has_secure_password

@@ -90,6 +90,7 @@ GEM
     minitest (5.3.4)
     multi_json (1.10.0)
     multipart-post (2.0.0)
+    net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
@@ -209,6 +210,7 @@ DEPENDENCIES
   faraday_middleware
   jbuilder (~> 2.0)
   jquery-rails
+  net-http-persistent
   pry
   pry-nav
   pry-rails
