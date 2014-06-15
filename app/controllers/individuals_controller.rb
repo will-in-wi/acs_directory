@@ -1,5 +1,5 @@
 class IndividualsController < ApplicationController
   def index
-    @individuals = Individual.all
+    @individuals = Individual.where family_position: 'Head'
   end
 end
