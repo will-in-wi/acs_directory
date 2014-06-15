@@ -22,22 +22,4 @@ class Individual < ActiveRecord::Base
     end
   end
 
-  def family_name
-    s = self.spouse
-
-    return "#{self.first_name} #{self.last_name}" if s.nil?
-
-    if self.family_position == 'Head'
-      head = self
-    else
-      head = s
-      s = self
-    end
-
-    if head.last_name == s.last_name
-      "#{head.first_name} and #{s.first_name} #{head.last_name}"
-    else
-      "#{head.first_name} #{head.last_name} and #{s.first_name} #{s.last_name}"
-    end
-  end
 end

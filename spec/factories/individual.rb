@@ -43,5 +43,21 @@ FactoryGirl.define do
         individual.phone_numbers << FactoryGirl.build(:person1_phone_number)
       end
     end
+
+    factory :individual_head do
+      id 1
+      family_id 1001
+      last_name 'Doe'
+      first_name 'John'
+      family_position 'Head'
+    end
+
+    factory :individual_spouse do
+      id 2
+      family_id 1001
+      last_name 'Doe'
+      first_name 'Jane'
+      family_position 'Spouse'
+    end
   end
 end
