@@ -1,4 +1,10 @@
 class Family
+  def self.all
+    Individual.select(:family_id).distinct.map { |f| self.new(f.family_id) }
+  end
+
+  attr_reader :id
+
   def initialize(id)
     @id = id
   end
