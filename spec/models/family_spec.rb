@@ -13,6 +13,69 @@ describe Family, :type => :model do
     end
   end
 
+  describe '#children' do
+    it 'returns all children' do
+      create :individual_spouse
+      create :individual_head
+      child1 = create :individual_child
+      child2 = create :individual_child
+
+      family = Family.new(1001)
+
+      expect(family.children.size).to eql(2)
+      expect(family.children[0]).to eql(child1)
+      expect(family.children[1]).to eql(child2)
+    end
+
+    it 'returns empty array if no children' do
+      create :individual_spouse
+      create :individual_head
+
+      family = Family.new(1001)
+
+      expect(family.children).to_not be_any
+    end
+  end
+
+  describe '#spouse' do
+    it 'returns spouse' do
+      spouse = create :individual_spouse
+      create :individual_head
+
+      family = Family.new(1001)
+
+      expect(family.spouse).to eql(spouse)
+    end
+
+    it 'returns nil if no spouse' do
+      create :individual_head
+
+      family = Family.new(1001)
+
+      expect(family.spouse).to be_nil
+    end
+  end
+
+  describe '#head' do
+    it 'returns head' do
+      create :individual_spouse
+      head = create :individual_head
+
+      family = Family.new(1001)
+
+      expect(family.head).to eql(head)
+    end
+
+    it 'returns nil if no head' do
+      # I do not see how this could be the case. But let's handle it anyway.
+      create :individual_spouse
+
+      family = Family.new(1001)
+
+      expect(family.head).to be_nil
+    end
+  end
+
   describe '#name' do
     it 'condenses both names when surnames are the same' do
       create :individual_spouse

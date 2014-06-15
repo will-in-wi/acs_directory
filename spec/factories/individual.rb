@@ -44,6 +44,8 @@ FactoryGirl.define do
       end
     end
 
+    # Family
+
     factory :individual_head do
       id 1
       family_id 1001
@@ -58,6 +60,14 @@ FactoryGirl.define do
       last_name 'Doe'
       first_name 'Jane'
       family_position 'Spouse'
+    end
+
+    factory :individual_child do
+      sequence(:id, 3)
+      family_id 1001
+      last_name 'Doe'
+      sequence(:first_name) { |n| "child#{n}" }
+      family_position 'Child'
     end
   end
 end
