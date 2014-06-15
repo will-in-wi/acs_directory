@@ -1,1 +1,18 @@
-<% skjfdkjl %>
+<% if @family.head %>
+  <h2>Head</h2>
+  <%= @family.head.first_name %> <%= @family.head.last_name %>
+<% end %>
+
+<% if @family.spouse %>
+  <h2>Spouse</h2>
+  <%= @family.spouse.first_name %> <%= @family.spouse.last_name %>
+<% end %>
+
+<% if @family.children.any? %>
+  <h2>Children</h2>
+  <ul>
+    <% @family.children.each do |child| %>
+      <li><%= child.first_name %> <%= child.last_name %></li>
+    <% end %>
+  </ul>
+<% end %>
