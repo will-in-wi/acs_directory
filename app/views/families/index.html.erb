@@ -1,17 +1,13 @@
 <table>
   <thead>
     <tr>
-      <td>#</td>
-      <td>Family #</td>
       <td>Family Name</td>
     </tr>
   </thead>
   <tbody>
     <% @individuals.each do |indv| %>
       <tr>
-        <td><%= indv.id %></td>
-        <td><%= indv.family_id %></td>
-        <td><%= indv.family_name %></td>
+        <td><%= link_to indv.family_name, family_path(indv.family_id) %></td>
       </tr>
     <% end %>
   </tbody>
