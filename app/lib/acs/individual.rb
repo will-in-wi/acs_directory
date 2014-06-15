@@ -21,7 +21,14 @@ module ACS
         end
       end
 
-      concat
+      # Get all of the individual formats.
+      individuals = []
+      concat.each do |indv|
+        puts indv.indv_id
+        individuals << self.find(indv.indv_id)
+      end
+
+      individuals
     end
 
     def self.all
