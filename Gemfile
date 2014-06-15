@@ -56,6 +56,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.1.2'
 
   gem 'guard'
+  gem 'guard-rspec', require: false
 end
 
 group :test do
