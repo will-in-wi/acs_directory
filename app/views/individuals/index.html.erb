@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>Family #</td>
+      <td>First</td>
+      <td>Last</td>
+      <td>Position</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @individuals.each do |indv| %>
+      <tr>
+        <td><%= indv.id %></td>
+        <td><%= indv.family_id %></td>
+        <td><%= indv.first_name %></td>
+        <td><%= indv.last_name %></td>
+        <td><%= indv.family_position %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
