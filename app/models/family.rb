@@ -1,9 +1,14 @@
 class Family
   def self.all
-    Individual.select(:family_id).distinct.map { |f| self.new(f.family_id) }
+    Individual.select(:family_id, :family_picture_url).distinct.map do |f|
+      i = self.new(f.family_id)
+      i.picture_url = f.family_picture_url
+      i
+    end
   end
 
   attr_reader :id
+  attr_accessor :picture_url
 
   def initialize(id)
     @id = id

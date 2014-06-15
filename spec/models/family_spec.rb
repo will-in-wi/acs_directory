@@ -10,6 +10,7 @@ describe Family, :type => :model do
       expect(families.size).to eq(1)
 
       expect(families.first.id).to eql(1001)
+      expect(families.first.picture_url).to eql('http://example.com/picture.jpg')
     end
   end
 

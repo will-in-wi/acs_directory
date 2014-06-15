@@ -52,6 +52,7 @@ FactoryGirl.define do
       last_name 'Doe'
       first_name 'John'
       family_position 'Head'
+      family_picture_url 'http://example.com/picture.jpg'
     end
 
     factory :individual_spouse do
@@ -60,6 +61,7 @@ FactoryGirl.define do
       last_name 'Doe'
       first_name 'Jane'
       family_position 'Spouse'
+      family_picture_url 'http://example.com/picture.jpg'
     end
 
     factory :individual_child do
@@ -68,6 +70,7 @@ FactoryGirl.define do
       last_name 'Doe'
       sequence(:first_name) { |n| "child#{n}" }
       family_position 'Child'
+      family_picture_url 'http://example.com/picture.jpg'
     end
   end
 end
