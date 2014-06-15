@@ -11,4 +11,14 @@ class Individual < ActiveRecord::Base
   has_many :individuals_phone_numbers, dependent: :destroy
 
   validates_uniqueness_of :id
+
+  validates_presence_of :id
+
+  def spouse
+    if self.family_position == 'Head'
+      Individual.where(family_id: self.family_id, family_position: 'Spouse').first
+    elsif self.family_position == 'Spouse'
+      Individual.where(family_id: self.family_id, family_position: 'Head').first
+    end
+  end
 end
