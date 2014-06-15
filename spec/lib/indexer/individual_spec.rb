@@ -37,24 +37,24 @@ describe Indexer::Individual do
       expect(individual.date_of_birth.to_s).to eql('1956-02-15 00:00:00 UTC')
       expect(individual.member_status).to eql('Transfer fr Lutheran')
 
-      expect(individual.email_addresses).to have(1).item
+      expect(individual.email_addresses.size).to eq(1)
 
       email = individual.email_addresses.find(2)
       expect(email).to_not be_nil
       expect(email.email_type).to eql('Personal')
-      expect(email.preferred).to be_true
+      expect(email.preferred).to be_truthy
       expect(email.email_address).to eql('jdoe@example.com')
-      expect(email.listed).to be_true
+      expect(email.listed).to be_truthy
 
-      expect(individual.addresses).to have(1).item
+      expect(individual.addresses.size).to eq(1)
 
       address = individual.addresses.find(3)
       expect(address.address_type_id).to eql(4)
       expect(address.address_type).to eql('Home')
-      expect(address.family_address).to be_true
-      expect(address.active).to be_true
-      expect(address.mailing_address).to be_true
-      expect(address.statement_address).to be_true
+      expect(address.family_address).to be_truthy
+      expect(address.active).to be_truthy
+      expect(address.mailing_address).to be_truthy
+      expect(address.statement_address).to be_truthy
       expect(address.country).to eql('USA')
       expect(address.company).to be_nil
       expect(address.address).to eql('123 Sesame Street')
@@ -63,17 +63,17 @@ describe Indexer::Individual do
       expect(address.state).to eql('MN')
       expect(address.zip_code).to eql('12345-1234')
 
-      expect(individual.phone_numbers).to have(2).items
+      expect(individual.phone_numbers.size).to eq(2)
 
       phone = individual.phone_numbers.find(545)
-      expect(phone.preferred).to be_false
+      expect(phone.preferred).to be_falsey
       expect(phone.phone_type_id).to eql(6)
       expect(phone.phone_type).to eql("Business")
-      expect(phone.family_phone).to be_false
+      expect(phone.family_phone).to be_falsey
       expect(phone.phone_number).to eql("123-456-7890")
       expect(phone.extension).to be_nil
-      expect(phone.listed).to be_true
-      expect(phone.address_phone).to be_false
+      expect(phone.listed).to be_truthy
+      expect(phone.address_phone).to be_falsey
       expect(phone.phone_ref).to eql(1234567890)
     end
 
@@ -146,24 +146,24 @@ describe Indexer::Individual do
       expect(individual).to_not be_nil
       expect(individual.suffix).to be_nil
 
-      expect(individual.email_addresses).to have(1).item
+      expect(individual.email_addresses.size).to eq(1)
 
       email = individual.email_addresses.find(2)
       expect(email).to_not be_nil
       expect(email.email_type).to eql('Personal')
-      expect(email.preferred).to be_true
+      expect(email.preferred).to be_truthy
       expect(email.email_address).to eql('jdoe@example.com')
-      expect(email.listed).to be_true
+      expect(email.listed).to be_truthy
 
-      expect(individual.addresses).to have(1).item
+      expect(individual.addresses.size).to eq(1)
 
       address = individual.addresses.find(3)
       expect(address.address_type_id).to eql(4)
       expect(address.address_type).to eql('Home')
-      expect(address.family_address).to be_true
-      expect(address.active).to be_true
-      expect(address.mailing_address).to be_true
-      expect(address.statement_address).to be_true
+      expect(address.family_address).to be_truthy
+      expect(address.active).to be_truthy
+      expect(address.mailing_address).to be_truthy
+      expect(address.statement_address).to be_truthy
       expect(address.country).to eql('USA')
       expect(address.company).to be_nil
       expect(address.address).to eql('123 Sesame Street')
@@ -172,17 +172,17 @@ describe Indexer::Individual do
       expect(address.state).to eql('MN')
       expect(address.zip_code).to eql('12345-1234')
 
-      expect(individual.phone_numbers).to have(2).items
+      expect(individual.phone_numbers.size).to eq(2)
 
       phone = individual.phone_numbers.find(545)
-      expect(phone.preferred).to be_false
+      expect(phone.preferred).to be_falsey
       expect(phone.phone_type_id).to eql(6)
       expect(phone.phone_type).to eql("Business")
-      expect(phone.family_phone).to be_false
+      expect(phone.family_phone).to be_falsey
       expect(phone.phone_number).to eql("123-456-7890")
       expect(phone.extension).to be_nil
-      expect(phone.listed).to be_true
-      expect(phone.address_phone).to be_false
+      expect(phone.listed).to be_truthy
+      expect(phone.address_phone).to be_falsey
       expect(phone.phone_ref).to eql(1234567890)
 
       # Create a test later to make sure that all of the unused email addresses are gone.
@@ -250,9 +250,9 @@ describe Indexer::Individual do
 
       Indexer::Individual.clean!
 
-      expect(EmailAddress).to have(1).item
-      expect(Address).to have(1).item
-      expect(PhoneNumber).to have(1).item
+      expect(EmailAddress.count).to eq(1)
+      expect(Address.count).to eq(1)
+      expect(PhoneNumber.count).to eq(1)
     end
   end
 end

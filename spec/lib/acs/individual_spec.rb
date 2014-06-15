@@ -22,14 +22,14 @@ describe ACS::Individual do
       pending
       WebMock.allow_net_connect!
       i = ACS::Individual.all
-      expect(i).to have(2400).items
+      expect(i.size).to eq(2400)
     end
 
     it 'works with query' do
       pending
       WebMock.allow_net_connect!
       i = ACS::Individual.where 'William'
-      expect(i).to have(15).items
+      expect(i.size).to eq(15)
     end
   end
 end

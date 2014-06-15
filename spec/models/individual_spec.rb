@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Individual do
+describe Individual, :type => :model do
   describe '#spouse' do
     it 'returns the spouse if given a head' do
       spouse = create :individual_spouse
