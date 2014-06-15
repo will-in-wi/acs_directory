@@ -19,3 +19,6 @@ Build admin ability to manually trigger a record update.
 Start building UI. Exposed weaknesses.
 * Time total build process and decide if a simpler ingest is sufficient.
 * Continue building UI. Set up listing of families by unit. Create model methods to simplify this. Tests!!!
+
+2014-06-14
+Next, build show pages.
