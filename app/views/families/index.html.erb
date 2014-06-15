@@ -5,9 +5,9 @@
     </tr>
   </thead>
   <tbody>
-    <% @individuals.each do |indv| %>
+    <% @families.each do |family| %>
       <tr>
-        <td><%= link_to indv.family_name, family_path(indv.family_id) %></td>
+        <td><%= link_to family.name, family_path(family.id) %></td>
       </tr>
     <% end %>
   </tbody>
