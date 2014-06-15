@@ -104,5 +104,14 @@ describe Family, :type => :model do
 
       expect(family.name).to eql('John Doe')
     end
+
+    it 'shows one name when no head' do
+      # This usually indicates a situation which should be fixed.
+      create :individual_spouse
+
+      family = Family.new(1001)
+
+      expect(family.name).to eql('Jane Doe')
+    end
   end
 end

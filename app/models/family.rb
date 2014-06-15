@@ -24,6 +24,8 @@ class Family
   def name
     if spouse.nil?
       "#{head.first_name} #{head.last_name}"
+    elsif head.nil?
+      "#{spouse.first_name} #{spouse.last_name}"
     elsif head.last_name == spouse.last_name
       "#{head.first_name} and #{spouse.first_name} #{head.last_name}"
     else
