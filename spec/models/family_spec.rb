@@ -14,6 +14,17 @@ describe Family, :type => :model do
     end
   end
 
+  describe '.new' do
+    it 'includes the photo' do
+      create :individual_head
+
+      family = Family.new(1001)
+
+      expect(family.id).to eql(1001)
+      expect(family.picture_url).to eql('http://example.com/picture.jpg')
+    end
+  end
+
   describe '#children' do
     it 'returns all children' do
       create :individual_spouse

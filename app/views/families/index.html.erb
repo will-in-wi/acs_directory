@@ -7,7 +7,7 @@
   <tbody>
     <% @families.each do |family| %>
       <tr>
-        <td><%= link_to family.name, family_path(family.id) %></td>
+        <td><%= link_to family.name, family_path(family.id) %> <% unless family.picture_url.blank? %>(picture)<% end %></td>
       </tr>
     <% end %>
   </tbody>

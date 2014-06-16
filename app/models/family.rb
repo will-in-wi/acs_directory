@@ -1,17 +1,21 @@
 class Family
   def self.all
-    Individual.select(:family_id, :family_picture_url).distinct.map do |f|
-      i = self.new(f.family_id)
-      i.picture_url = f.family_picture_url
-      i
-    end
+    Individual.select(:family_id, :family_picture_url).distinct.map { |f| self.new(f.family_id, f.family_picture_url) }
   end
 
   attr_reader :id
   attr_accessor :picture_url
 
-  def initialize(id)
+  def initialize(id, picture_url=nil)
     @id = id
+    if picture_url
+      @picture_url = picture_url
+    else
+      pic_indv = Individual.select(:family_picture_url).where(family_id: id).limit(1).first
+      if pic_indv
+        @picture_url = pic_indv.family_picture_url
+      end
+    end
   end
 
   def children
