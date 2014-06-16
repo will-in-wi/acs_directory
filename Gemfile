@@ -74,3 +74,7 @@ group :development, :test do
   gem 'pry-nav'
   gem 'pry-stack_explorer'
 end
+
+# Not really sure why this is needed.
+gem 'therubyracer'
+gem 'execjs'
