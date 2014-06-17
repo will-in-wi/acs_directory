@@ -1,20 +1,19 @@
-<img src="<%= @family.picture_url %>" />
+<div class="page-header">
+  <h1><%= @family.name %></h1>
+</div>
 
-<% if @family.head %>
-  <h2>Head</h2>
-  <%= @family.head.first_name %> <%= @family.head.last_name %>
-<% end %>
-
-<% if @family.spouse %>
-  <h2>Spouse</h2>
-  <%= @family.spouse.first_name %> <%= @family.spouse.last_name %>
-<% end %>
-
-<% if @family.children.any? %>
-  <h2>Children</h2>
-  <ul>
-    <% @family.children.each do |child| %>
-      <li><%= child.first_name %> <%= child.last_name %></li>
+<div class="row">
+  <div class="col-xs-2">
+    <img src="<%= @family.picture_url %>" />
+  </div>
+  <div class="col-xs-10">
+    <% if @family.children.any? %>
+      <h2>Children</h2>
+      <ul>
+        <% @family.children.each do |child| %>
+          <li><%= child.first_name %> <%= child.last_name %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+  </div>
+</div>
