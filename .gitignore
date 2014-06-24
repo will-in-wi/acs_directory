@@ -16,3 +16,4 @@
 /tmp
 
 /config/acs_authentication.yml
+/config/database.yml
