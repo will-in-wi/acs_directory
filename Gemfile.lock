@@ -110,6 +110,7 @@ GEM
     minitest (5.3.4)
     multi_json (1.10.1)
     multipart-post (2.0.0)
+    mysql2 (0.3.16)
     net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -246,6 +247,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
+  mysql2
   net-http-persistent
   pry
   pry-nav
