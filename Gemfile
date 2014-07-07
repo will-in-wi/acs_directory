@@ -32,6 +32,8 @@ gem 'faraday_middleware'
 # Speed up faraday by keeping the connection open.
 gem 'net-http-persistent'
 gem 'rash'
+# Fix issues with certs.
+gem 'certified'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
