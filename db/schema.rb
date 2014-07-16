@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518201816) do
+ActiveRecord::Schema.define(version: 20140716130343) do
 
   create_table "addresses", id: false, force: true do |t|
     t.integer  "id"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20140518201816) do
     t.integer  "id"
     t.string   "phone_type"
     t.integer  "phone_type_id"
-    t.integer  "phone_ref"
+    t.integer  "phone_ref",     limit: 8
     t.boolean  "listed"
     t.string   "phone_number"
     t.boolean  "preferred"
