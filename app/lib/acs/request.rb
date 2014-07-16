@@ -5,7 +5,9 @@ module ACS
     end
 
     def self.connection
-      @@conn ||= Faraday.new url: 'https://secure.accessacs.com/api_accessacs_mobile/v2/' + config['site_number'].to_s, ssl: {version: :SSLv3} do |builder|
+      # Note, as of 2014-07-16, ACS only supports :SSLv3 and :TLSv1.
+      # Some servers (cough, webfaction) will fail to connect if this is not forced.
+      @@conn ||= Faraday.new url: 'https://secure.accessacs.com/api_accessacs_mobile/v2/' + config['site_number'].to_s, ssl: {version: :TLSv1} do |builder|
         builder.request :basic_auth, config['username'], config['password']
         builder.response :rashify
         builder.response :json, :content_type => /\bjson$/
