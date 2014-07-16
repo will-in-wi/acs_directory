@@ -22,3 +22,6 @@ Start building UI. Exposed weaknesses.
 
 2014-06-14
 Next, build show pages.
+
+2014-07-16
+Fixed bug with phone_ref and ssl. Need to clean up and build partial imports.
