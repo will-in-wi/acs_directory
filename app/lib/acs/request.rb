@@ -5,7 +5,7 @@ module ACS
     end
 
     def self.connection
-      @@conn ||= Faraday.new url: 'https://secure.accessacs.com/api_accessacs_mobile/v2/' + config['site_number'].to_s do |builder|
+      @@conn ||= Faraday.new url: 'https://secure.accessacs.com/api_accessacs_mobile/v2/' + config['site_number'].to_s, ssl: {version: :SSLv3} do |builder|
         builder.request :basic_auth, config['username'], config['password']
         builder.response :rashify
         builder.response :json, :content_type => /\bjson$/
