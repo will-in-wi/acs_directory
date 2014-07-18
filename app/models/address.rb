@@ -5,4 +5,7 @@ class Address < ActiveRecord::Base
   has_many :addresses_individuals, dependent: :destroy
 
   validates_uniqueness_of :id
+
+  scope :personal, -> { where(family_address: false) }
+  scope :family, -> { where(family_address: true) }
 end

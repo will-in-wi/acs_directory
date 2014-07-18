@@ -5,4 +5,7 @@ class PhoneNumber < ActiveRecord::Base
   has_many :individuals_phone_numbers, dependent: :destroy
 
   validates_uniqueness_of :id
+
+  scope :personal, -> { where(family_phone: false, listed: true) }
+  scope :family, -> { where(family_phone: true, listed: true) }
 end

@@ -30,6 +30,10 @@ class Family
     @spouse ||= Individual.where(family_id: @id, family_position: 'Spouse').first
   end
 
+  def primary
+    head || spouse
+  end
+
   def name
     if spouse.nil?
       "#{head.first_name} #{head.last_name}"
@@ -40,5 +44,13 @@ class Family
     else
       "#{head.first_name} #{head.last_name} and #{spouse.first_name} #{spouse.last_name}"
     end
+  end
+
+  def addresses
+    primary.addresses.family
+  end
+
+  def phone_numbers
+    primary.phone_numbers.family
   end
 end
