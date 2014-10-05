@@ -45,3 +45,17 @@
   <dd><%= render phone %></dd>
 <% end %>
 </dl>
+
+
+<h2>Email addresses</h2>
+
+<dl class="dl-horizontal">
+<% @family.head.email_addresses.each do |email_address| %>
+  <dt><%= @family.head.first_name %>:</dt>
+  <dd><%= render email_address %></dd>
+<% end %>
+<% @family.spouse.email_addresses.each do |email_address| %>
+  <dt><%= @family.spouse.first_name %>:</dt>
+  <dd><%= render email_address %></dd>
+<% end %>
+</dl>
