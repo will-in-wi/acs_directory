@@ -1,7 +1,7 @@
 module ACS
   class Request
     def self.config
-      @@config ||= YAML.load_file("#{::Rails.root}/config/acs_authentication.yml")[::Rails.env]
+      @@config ||= Rails.configuration.acs_credentials
     end
 
     def self.connection

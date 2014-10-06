@@ -1,0 +1,6 @@
+# This is a list of member_status values which
+# are considered actual members.
+member_statuses:
+    - status1
+    - status2
+    - status3

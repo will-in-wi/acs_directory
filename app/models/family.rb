@@ -1,6 +1,10 @@
 class Family
   def self.all
-    Individual.select(:family_id, :family_picture_url).distinct.map { |f| self.new(f.family_id, f.family_picture_url) }
+    # Get a basic list of families.
+    individuals = Individual.select(:family_id, :family_picture_url).distinct.where(member_status: Rails.configuration.acs_config['member_statuses'])
+
+    # Turn this into family objects.
+    individuals.map { |f| self.new(f.family_id, f.family_picture_url) }
   end
 
   attr_reader :id
