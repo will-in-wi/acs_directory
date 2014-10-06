@@ -14,9 +14,9 @@ Prerequisites:
 * Ruby (2.1 is tested. RBENV is recommended on Posix systems.)
 * Bundler (`gem install bundler`)
 
-# Check out the repository from GitHub.
-# Run `bundle install`
-# Copy `config/acs_configuration.yml.example` to `config/acs_configuration.yml`. Modify as needed.
-# Copy `config/acs_authentication.yml.example` to `config/acs_authentication.yml`. Modify as needed. Do not change the `test` section.
-# Download data from AccessACS by running `bundle exec rake acs:bulk_update`.
-# Start Webbrick. `rails server`
+1. Check out the repository from GitHub.
+2. Run `bundle install`
+3. Copy `config/acs_configuration.yml.example` to `config/acs_configuration.yml`. Modify as needed.
+4. Copy `config/acs_authentication.yml.example` to `config/acs_authentication.yml`. Modify as needed. Do not change the `test` section.
+5. Download data from AccessACS by running `bundle exec rake acs:bulk_update`.
+6. Start Webbrick. `rails server`
