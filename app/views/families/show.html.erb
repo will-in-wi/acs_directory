@@ -45,13 +45,17 @@
     <h2><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email addresses</h2>
 
     <dl class="dl-horizontal">
-    <% @family.head.email_addresses.each do |email_address| %>
-      <dt><%= @family.head.first_name %>:</dt>
-      <dd><%= render email_address %></dd>
+    <% if @family.head %>
+      <% @family.head.email_addresses.each do |email_address| %>
+        <dt><%= @family.head.first_name %>:</dt>
+        <dd><%= render email_address %></dd>
+      <% end %>
     <% end %>
-    <% @family.spouse.email_addresses.each do |email_address| %>
-      <dt><%= @family.spouse.first_name %>:</dt>
-      <dd><%= render email_address %></dd>
+    <% if @family.spouse %>
+      <% @family.spouse.email_addresses.each do |email_address| %>
+        <dt><%= @family.spouse.first_name %>:</dt>
+        <dd><%= render email_address %></dd>
+      <% end %>
     <% end %>
     </dl>
 
