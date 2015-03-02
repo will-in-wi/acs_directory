@@ -20,6 +20,11 @@ class Family
         @picture_url = pic_indv.family_picture_url
       end
     end
+
+    # Check for any family members.
+    if Individual.where(family_id: @id).count == 0
+      raise ActiveRecord::RecordNotFound, "Couldn't find any individuals with family_id=#{@id}"
+    end
   end
 
   def children
