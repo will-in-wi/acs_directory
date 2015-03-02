@@ -27,13 +27,17 @@
       <dt>Family:</dt>
       <dd><%= render phone %></dd>
     <% end %>
-    <% @family.head.phone_numbers.personal.each do |phone| %>
-      <dt><%= @family.head.first_name %>:</dt>
-      <dd><%= render phone %></dd>
+    <% if @family.head %>
+      <% @family.head.phone_numbers.personal.each do |phone| %>
+        <dt><%= @family.head.first_name %>:</dt>
+        <dd><%= render phone %></dd>
+      <% end %>
     <% end %>
-    <% @family.spouse.phone_numbers.personal.each do |phone| %>
-      <dt><%= @family.spouse.first_name %>:</dt>
-      <dd><%= render phone %></dd>
+    <% if @family.spouse %>
+      <% @family.spouse.phone_numbers.personal.each do |phone| %>
+        <dt><%= @family.spouse.first_name %>:</dt>
+        <dd><%= render phone %></dd>
+      <% end %>
     <% end %>
     </dl>
 
