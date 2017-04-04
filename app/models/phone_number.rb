@@ -1,4 +1,4 @@
-class PhoneNumber < ActiveRecord::Base
+class PhoneNumber < ApplicationRecord
   self.primary_key = 'id'
 
   has_many :individuals, through: :individuals_phone_numbers

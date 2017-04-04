@@ -1,4 +1,4 @@
-class Individual < ActiveRecord::Base
+class Individual < ApplicationRecord
   self.primary_key = 'id'
 
   has_many :email_addresses, through: :email_addresses_individuals

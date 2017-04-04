@@ -1,4 +1,4 @@
-class Address < ActiveRecord::Base
+class Address < ApplicationRecord
   self.primary_key = 'id'
 
   has_many :individuals, through: :addresses_individuals

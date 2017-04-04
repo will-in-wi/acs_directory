@@ -13,7 +13,11 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
+/tmp/*
+!/tmp/.keep
+
+# Ignore Byebug command history file.
+.byebug_history
 
 /config/acs_authentication.yml
 /config/acs_configuration.yml
