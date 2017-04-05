@@ -6,7 +6,7 @@ require 'spec_helper'
 describe ACS::Individual do
   describe '.find' do
 
-    before { stub_request(:get, "https://testuser:testpassword@secure.accessacs.com/api_accessacs_mobile/v2/123456/individuals/2").
+    before { stub_request(:get, "https://secure.accessacs.com/api_accessacs_mobile/v2/123456/individuals/2").
              to_return(:status => 200, :body => IO.read(Rails.root.join('spec', 'fixtures', 'individuals', 'person1.json')), :headers => { 'Content-Type' => 'application/json; charset=utf-8' }) }
 
     it 'works in best case' do
