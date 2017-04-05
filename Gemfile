@@ -31,7 +31,8 @@ gem 'jquery-rails'
 gem 'faraday'
 gem 'faraday_middleware'
 # Speed up faraday by keeping the connection open.
-gem 'net-http-persistent'
+# Don't upgrade to 3.0 until this is closed: https://github.com/lostisland/faraday/pull/619
+gem 'net-http-persistent', '~> 2.9'
 gem 'rash'
 # Fix issues with certs.
 gem 'certified'
