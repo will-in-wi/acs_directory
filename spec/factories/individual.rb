@@ -52,6 +52,7 @@ FactoryGirl.define do
       last_name 'Doe'
       first_name 'John'
       family_position 'Head'
+      member_status 'Transfer fr Lutheran'
       family_picture_url 'http://example.com/picture.jpg'
     end
 
@@ -61,6 +62,7 @@ FactoryGirl.define do
       last_name 'Doe'
       first_name 'Jane'
       family_position 'Spouse'
+      member_status 'Transfer fr Lutheran'
       family_picture_url 'http://example.com/picture.jpg'
     end
 
@@ -70,6 +72,7 @@ FactoryGirl.define do
       last_name 'Doe'
       sequence(:first_name) { |n| "child#{n}" }
       family_position 'Child'
+      member_status 'Transfer fr Lutheran'
       family_picture_url 'http://example.com/picture.jpg'
     end
   end
