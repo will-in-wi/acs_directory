@@ -106,7 +106,7 @@ module Indexer
 
         # Remove email addresses that are no longer used.
         # Reload email addresses from database since there is an out of date cache.
-        removed_email_ids = individual.email_addresses(true).map(&:id) - @individual.emails.map {|e| e['email_id']}
+        removed_email_ids = individual.email_addresses.reload.map(&:id) - @individual.emails.map {|e| e['email_id']}
         individual.email_addresses_individuals.where(email_address_id: removed_email_ids).destroy_all
       end
 
@@ -142,7 +142,7 @@ module Indexer
 
         # Remove addresses that are no longer used.
         # Reload addresses from database since there is an out of date cache.
-        removed_addr_ids = individual.addresses(true).map(&:id) - @individual.addresses.map {|e| e['addr_id']}
+        removed_addr_ids = individual.addresses.reload.map(&:id) - @individual.addresses.map {|e| e['addr_id']}
         individual.addresses_individuals.where(address_id: removed_addr_ids).destroy_all
       end
 
@@ -172,7 +172,7 @@ module Indexer
 
         # Remove phones that are no longer used.
         # Reload phones from database since there is an out of date cache.
-        removed_phone_ids = individual.phone_numbers(true).map(&:id) - @individual.phones.map {|e| e['phone_id']}
+        removed_phone_ids = individual.phone_numbers.reload.map(&:id) - @individual.phones.map {|e| e['phone_id']}
         individual.individuals_phone_numbers.where(phone_number_id: removed_phone_ids).destroy_all
       end
 
