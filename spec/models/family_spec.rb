@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Family, :type => :model do
+describe Family, type: :model do
   describe '.all' do
     it 'returns all families without duplicates' do
       create :individual_spouse
